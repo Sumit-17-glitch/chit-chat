@@ -1,12 +1,18 @@
-import { app } from "./app.js";
+import dotenv from "dotenv";
+dotenv.config();
 
-const port = 3000;
+import http from "node:http";
+import { app } from "./app.js";
+import { createWebSocketConnection } from "./webSocket.js";
+
+const server = http.createServer(app);
+
+createWebSocketConnection(server);
 
 app.get("/", (req, res) => {
-    res.send("<h1>hello world</h1>");
-})
+    res.send("<div>hello</div>");
+});
 
-app.listen(port, () => {
-    console.log(`app is listening on; http://localhost:${port}`);
-    
+server.listen(process.env.PORT, () => {
+    console.log(`Listneing on: http://localhost:${process.env.PORT}`);    
 });
