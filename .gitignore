@@ -1,0 +1,18 @@
+# Node modules
+chit-chat-backend/node_modules/
+chit-chat-frontend/node_modules/
+
+# Environment files
+chit-chat-backend/.env
+chit-chat-frontend/.env
+
+# Logs
+*.log
+
+# Build output
+chit-chat-backend/dist/
+chit-chat-frontend/dist/
+
+# OS files
+.DS_Store
+Thumbs.db
