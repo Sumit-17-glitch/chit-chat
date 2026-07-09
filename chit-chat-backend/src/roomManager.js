@@ -27,7 +27,7 @@ export const leaveRoom = (socket) => {
 
     room.delete(socket);
 
-    if(room.size() == 0){
+    if(room.size == 0){
         rooms.delete(room);
     }
 
@@ -35,13 +35,18 @@ export const leaveRoom = (socket) => {
     
 }
 
-export const broadCastMeassage = (roomName, message) => {
+export const broadCastMeassage = (roomName, userName ,message) => {
     const room = rooms.get(roomName);
     if(!room) return;
 
     room.forEach((client) => {
-        client.socket.send(message);
+        client.socket.send(JSON.stringify({userName, message}));
     });
+}
+
+export const getRooms = (socket) => {
+    const currentRooms = [...rooms.keys()];
+    socket.send(JSON.stringify({currentRooms}));
 }
 
 

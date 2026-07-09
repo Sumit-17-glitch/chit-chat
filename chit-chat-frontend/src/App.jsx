@@ -1,20 +1,13 @@
 import { useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./router/appRouter";
 
 function App() {
-  useEffect(() => {
-    const connection = new WebSocket("ws://localhost:3000");
-    
-    connection.onopen = () => {
-      connection.send(JSON.stringify({message:"hello"}));
-    }
-
-    connection.onmessage = (message) => {
-      console.log(message.data);
-    }
-  }, []);
 
   return (
-    <div>hello</div>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   )
 }
 
